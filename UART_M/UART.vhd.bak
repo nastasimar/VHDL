@@ -1,0 +1,106 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity Uart_tx is
+generic (Baud_clk : integer :=   5200 -1); 
+port (
+	RST: in std_logic;
+	clk : in std_logic;
+	st_en : in std_logic;
+	tx_data : in std_logic_vector (7 downto 0);
+	Tx_out : out std_logic
+);
+end entity; 
+
+architecture Transmit  of Uart_tx  is
+ signal  baud_rate_clk : std_logic := '0';
+ signal Count_bit: integer  range 0 to 7;
+ signal count: std_logic := '0';
+ type State_type is (IDLE, Start, Data, STOP);
+ signal State : State_type := IDLE;
+
+ begin
+ baud_clk : process ( clk, rst)
+ begin 
+	if (rst = '0') then 
+		 count <= 0;
+	elsif (rising_edge(clk)) then 
+		if (baud_rate_clk= '0') then
+			Count <= Count +1;
+		else 
+			Count  <= 0; 
+		end if;
+				if (Count = baud_rate_clk) then 
+				baud_rate_clk <= 1;
+				end if;
+	end if;	
+ end process baud_clk ;
+ 
+  
+ Uart_trans : process (clk, rst)
+	begin 
+	if (RST = '0')
+	 then State <= IDLE;
+	elsif (rising_edge(clk)) then 
+		case State is 
+			 when IDLE => 
+				if  ((baud_rate_clk=1 ) and ( Tx_out =1 ) and (st_en = 1)) then 
+				--baud_rate_clk <= '1';
+				State <= Start;
+				else 
+				State <= IDLE;
+				end if;
+				
+			 when Start => 
+					Tx_out := '0'; 
+					State <= Data;
+					
+					
+			when Data => 
+				if (baud_rate_clk=1) then 
+					if (Count_bit /= 7) then 
+					Count_bit := Count_bit +1; 
+					Tx_out <= tx_data;
+					end if;
+				State <= Y2;
+				else 
+				State <= Foot;
+				Tover <= '0';
+				end if;
+			when Y2 => 
+				if (T = T1) then 
+				Tover <= '1';
+				State <= A;
+				else 
+				State <= Y2;
+				Tover <= '0';
+				end if;
+			when others =>
+			 Tover <= '1';
+				State <= A;
+		end case;
+	end if;
+end process Uart_trans;
+		
+		
+output:
+ process (state )	
+begin 
+	case State is 
+		 when A => 
+		 MR <= '0'; MY <= '0'; MG <= '1'; P <= '0';				
+		 when Y1 => 
+		 MR <= '0'; MY <= '1'; MG <= '0'; P <= '0';
+		 when Foot =>  
+		 MR <= '1'; MY <= '0'; MG <= '0'; P <= '1';
+		 when Y2 =>  
+		 MR <= '1'; MY <= '1'; MG <= '0'; P <= '0';
+						 
+	end case;
+
+end process output; 
+Pr <= not P;
+Pg <= P;		
+ end architecture;
+ 

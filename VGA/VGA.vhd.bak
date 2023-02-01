@@ -1,0 +1,79 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+
+
+entity VGA is
+port (
+clki : in std_logic;
+--clk : in std_logic; 
+--rst
+R, G, B : out std_logic;
+VGA_BLANK_N : in std_logic;
+)
+end entity;
+
+
+architecture pixel of VGA
+signal Red : is array (o to 639) of  std_logic;
+signal string_ cnt : integer range 0 to 524
+signal cnt : integer range 0 to a+b+c+d ; 
+signal HSYNK : std_logic;
+signal H_BLANK_N : std_logic;
+signal V_BLANK_N : std_logic;
+signal  clk : in std_logic := 0;
+constant a : integer : = 190/2;
+constant b : integer : = 96/2;
+constant c : integer : = 1270/2;
+constant d : integer : = 30/2;
+begin 
+vga_BLANK_N <= H_BLANK_N and V_BLANK_N;
+
+clk_in: process (clk, clki)
+begin 
+if (rising_edge(clki))then 
+clk <= not clk;
+end if;
+end process clk_in;
+
+Horisontal: process (clk)
+ IF (cnt <= a) then 
+ HSYNK <= '0';
+ H_BLANK_N <= '0';
+ elsif (cnt <= (a+b)) then 
+  HSYNK <= '2';
+ elsif (cnt <= (a+b+c)) then   
+ H_BLANK_N <= '1';
+ R <= Red(i);
+ G <= Green (i);
+ B <= Blue (i);
+ i <= i+1; 
+ elsif (cnt <= (a+b+c+d-1)) then 
+  H_BLANK_N <= '0';
+else cnt <= '0';
+string_cnt <= string_cnt + 1;
+	if (string_cnt < sa) then 
+	VSYNK <= '0';
+	 V_BLANK_N <= '0';
+	 
+elsif (string_cnt < (sa+ sb)) then 
+	VSYNK <= '1';
+elsif (string_cnt < (sa+ sb+ sc)) then 
+	V_BLANK_N <= '1';	
+
+elsif (string_cnt < (sa+ sb+ sc+ sd-1)) then 
+  V_BLANK_N <= '0';
+else 
+string_cnt <= '0';
+i <= '0';
+end if;
+end if; 
+cnt <= cnt+'1';
+ end process; 
+ end architecture;
+
+
+
+
+

@@ -1,0 +1,79 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\quartus\proj\VGA\simulation\modelsim
+Evga
+Z1 w1668429824
+Z2 DPx4 ieee 18 std_logic_unsigned 0 22 RYmj;=TK`k=k>D@Cz`zoB3
+Z3 DPx4 ieee 15 std_logic_arith 0 22 4`Y?g_lkdn;7UL9IiJck01
+Z4 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z5 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z6 dD:\quartus\proj\VGA\simulation\modelsim
+Z7 8D:/quartus/proj/VGA/VGA.vhd
+Z8 FD:/quartus/proj/VGA/VGA.vhd
+l0
+L6
+V2Vm01_;Z_aWCIE5=`bC=N0
+Z9 OV;C;10.1d;51
+31
+Z10 !s108 1668429897.902000
+Z11 !s90 -reportprogress|300|-93|-work|work|D:/quartus/proj/VGA/VGA.vhd|
+Z12 !s107 D:/quartus/proj/VGA/VGA.vhd|
+Z13 o-93 -work work -O0
+Z14 tExplicit 1
+!s100 VOUYeFL2ZG5Fh0FMld`IV2
+!i10b 1
+Avga_rtl
+R2
+R3
+R4
+R5
+DEx4 work 3 vga 0 22 2Vm01_;Z_aWCIE5=`bC=N0
+l32
+L17
+VXmA6U`4l;eQXmBEBC>DW_2
+R9
+31
+R10
+R11
+R12
+R13
+R14
+!s100 ]kPg8c4`9fQz_dg1l?Y2G2
+!i10b 1
+Evga_vhd_tst
+Z15 w1668428682
+R4
+R5
+R6
+Z16 8D:/quartus/proj/VGA/simulation/modelsim/VGA.vht
+Z17 FD:/quartus/proj/VGA/simulation/modelsim/VGA.vht
+l0
+L30
+VX5VDeh9;U;E^?c;:<akMU0
+!s100 U_0i2mTd]R]7LeLYSoOjb1
+R9
+31
+!i10b 1
+Z18 !s108 1668429898.616000
+Z19 !s90 -reportprogress|300|-93|-work|work|D:/quartus/proj/VGA/simulation/modelsim/VGA.vht|
+Z20 !s107 D:/quartus/proj/VGA/simulation/modelsim/VGA.vht|
+R13
+R14
+Avga_arch
+R4
+R5
+DEx4 work 11 vga_vhd_tst 0 22 X5VDeh9;U;E^?c;:<akMU0
+l57
+L32
+Vc8Y_kZ^Nzi3^QbeJE`l2Q3
+!s100 XB6o7nhGUmD3`U0YjRNOT0
+R9
+31
+!i10b 1
+R18
+R19
+R20
+R13
+R14
